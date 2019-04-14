@@ -1,0 +1,31 @@
+{
+    "name": "fhermann/psr",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Florian Hermann",
+            "email": "florian.hermann94@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "nyholm/psr7": "^1.1",
+        "nyholm/psr7-server": "^0.3.0",
+        "psr/http-server-middleware": "^1.0",
+        "symfony/dependency-injection": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/config": "^4.2",
+        "zendframework/zend-httphandlerrunner": "^1.1",
+        "symfony/routing": "^4.2",
+        "psr/cache": "^1.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2",
+        "symfony/dotenv": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

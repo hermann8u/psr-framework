@@ -1,0 +1,58 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+imports:
+    - { resource: packages/* }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true
+        public: false
+        bind:
+            string $environment: '%app.environment%'
+
+    Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
+    Psr\Container\ContainerInterface: '@service_container'
+
+    Symfony\Contracts\Cache\CacheInterface: '@App\Service\VoidCache' # Change this for a real cache implementation
+
+    Nyholm\Psr7\Factory\Psr17Factory: '@http_factory'
+    Psr\Http\Message\RequestFactoryInterface: '@http_factory'
+    Psr\Http\Message\ResponseFactoryInterface: '@http_factory'
+    Psr\Http\Message\ServerRequestFactoryInterface: '@http_factory'
+    Psr\Http\Message\StreamFactoryInterface: '@http_factory'
+    Psr\Http\Message\UploadedFileFactoryInterface: '@http_factory'
+    Psr\Http\Message\UriFactoryInterface: '@http_factory'
+
+    http_factory:
+        class: Nyholm\Psr7\Factory\Psr17Factory
+
+    Nyholm\Psr7Server\ServerRequestCreator:
+        public: true
+        class: Nyholm\Psr7Server\ServerRequestCreator
+        arguments: ['@http_factory', '@http_factory', '@http_factory', '@http_factory']
+
+    App\RequestHandler:
+        public: true
+        arguments:
+            - '@App\Middleware\ExceptionHandler'
+            - '@App\Middleware\Cache'
+            - '@App\Middleware\Router'
+
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Kernel.php,RequestHandler.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        public: true
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

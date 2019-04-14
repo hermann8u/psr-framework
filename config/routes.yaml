@@ -1,0 +1,9 @@
+# This file only works with RouterForComplexRoutes
+
+main_index:
+    path: /
+    controller: App\Controller\MainController::index
+
+main_name:
+    path: /name/{name}
+    controller: App\Controller\MainController::name

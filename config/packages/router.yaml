@@ -1,0 +1,15 @@
+services:
+    Symfony\Component\Routing\RouterInterface: '@router'
+    Symfony\Component\Routing\Generator\UrlGeneratorInterface: '@router'
+    Symfony\Component\Routing\Matcher\UrlMatcherInterface: '@router'
+
+    router:
+        class: Symfony\Component\Routing\Router
+        arguments: ['@router.yaml_loader', '%app.project_dir%/config/routes.yaml']
+
+    router.yaml_loader:
+        class: Symfony\Component\Routing\Loader\YamlFileLoader
+        arguments: ['@router.file_locator']
+
+    router.file_locator:
+        class: Symfony\Component\Config\FileLocator
