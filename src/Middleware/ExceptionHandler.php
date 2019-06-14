@@ -42,7 +42,7 @@ class ExceptionHandler implements MiddlewareInterface
                 throw $exception;
             }
 
-            $response = $this->responseFactory->createResponse(500, $exception->getMessage());
+            $response = $this->responseFactory->createResponse(500);
         }
 
         return $response;

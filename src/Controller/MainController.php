@@ -27,7 +27,7 @@ class MainController
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->streamFactory->createStream('cool'));
+            ->withBody($this->streamFactory->createStream('Hello world'));
     }
 
     public function name(string $name)
@@ -35,6 +35,6 @@ class MainController
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->streamFactory->createStream($name));
+            ->withBody($this->streamFactory->createStream(sprintf("Hello %s", $name)));
     }
 }
