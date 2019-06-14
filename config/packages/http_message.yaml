@@ -1,0 +1,12 @@
+# Change this when you use an other PSR-7 implementation
+
+services:
+    Psr\Http\Message\RequestFactoryInterface: '@http_message_factory'
+    Psr\Http\Message\ResponseFactoryInterface: '@http_message_factory'
+    Psr\Http\Message\ServerRequestFactoryInterface: '@http_message_factory'
+    Psr\Http\Message\StreamFactoryInterface: '@http_message_factory'
+    Psr\Http\Message\UploadedFileFactoryInterface: '@http_message_factory'
+    Psr\Http\Message\UriFactoryInterface: '@http_message_factory'
+
+    http_message_factory:
+        class: Nyholm\Psr7\Factory\Psr17Factory

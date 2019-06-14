@@ -1,4 +1,4 @@
-# This file only works with RouterForComplexRoutes
+# The application routes
 
 main_index:
     path: /

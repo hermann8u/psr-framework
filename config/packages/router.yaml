@@ -1,3 +1,5 @@
+# Symfony router definition
+
 services:
     Symfony\Component\Routing\RouterInterface: '@router'
     Symfony\Component\Routing\Generator\UrlGeneratorInterface: '@router'

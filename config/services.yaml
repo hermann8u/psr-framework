@@ -1,4 +1,4 @@
-# This file is the entry point to configure your own services.
+# This file is the entry point to configure the applications services.
 # Files in the packages/ subdirectory configure your dependencies.
 imports:
     - { resource: packages/* }
@@ -15,27 +15,9 @@ services:
         bind:
             string $environment: '%app.environment%'
 
-    Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
-    Psr\Container\ContainerInterface: '@service_container'
-
-    Symfony\Contracts\Cache\CacheInterface: '@App\Service\VoidCache' # Change this for a real cache implementation
-
-    Nyholm\Psr7\Factory\Psr17Factory: '@http_factory'
-    Psr\Http\Message\RequestFactoryInterface: '@http_factory'
-    Psr\Http\Message\ResponseFactoryInterface: '@http_factory'
-    Psr\Http\Message\ServerRequestFactoryInterface: '@http_factory'
-    Psr\Http\Message\StreamFactoryInterface: '@http_factory'
-    Psr\Http\Message\UploadedFileFactoryInterface: '@http_factory'
-    Psr\Http\Message\UriFactoryInterface: '@http_factory'
-
-    http_factory:
-        class: Nyholm\Psr7\Factory\Psr17Factory
-
-    Nyholm\Psr7Server\ServerRequestCreator:
-        public: true
-        class: Nyholm\Psr7Server\ServerRequestCreator
-        arguments: ['@http_factory', '@http_factory', '@http_factory', '@http_factory']
-
+    # The request handler goal is to execute the middleware stack
+    # Its arguments have to be the middleware stack
+    # !! Warning !! Order matters.
     App\RequestHandler:
         public: true
         arguments:

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
-use Nyholm\Psr7Server\ServerRequestCreator;
+use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
@@ -50,7 +50,7 @@ class Kernel
     {
         $this->boot();
 
-        $request = $this->container->get(ServerRequestCreator::class)->fromGlobals();
+        $request = $this->container->get(ServerRequestCreatorInterface::class)->fromGlobals();
         $response = $this->container->get(RequestHandler::class)->handle($request);
 
         (new SapiEmitter())->emit($response);

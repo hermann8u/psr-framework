@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 class MainController
 {
@@ -10,10 +11,15 @@ class MainController
      * @var ResponseFactoryInterface
      */
     private $responseFactory;
+    /**
+     * @var StreamFactoryInterface
+     */
+    private $streamFactory;
 
-    public function __construct(ResponseFactoryInterface $responseFactory)
+    public function __construct(ResponseFactoryInterface $responseFactory, StreamFactoryInterface $streamFactory)
     {
         $this->responseFactory = $responseFactory;
+        $this->streamFactory = $streamFactory;
     }
 
     public function index()
@@ -21,7 +27,7 @@ class MainController
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->render('cool'));
+            ->withBody($this->streamFactory->createStream('cool'));
     }
 
     public function name(string $name)
@@ -29,6 +35,6 @@ class MainController
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->render($name));
+            ->withBody($this->streamFactory->createStream($name));
     }
 }
