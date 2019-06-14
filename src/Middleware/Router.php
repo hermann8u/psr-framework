@@ -54,29 +54,17 @@ class Router implements MiddlewareInterface
             return $this->responseFactory->createResponse(404, 'Not Found');
         }
 
-        // We expect $parameters['_controller'] to contain a string on format "ControllerClass::action"
-        if (!strpos($parameters['_controller'], self::CONTROLLER_METHOD_SEPARATOR)) {
-            throw new \LogicException(sprintf(
-                'Invalid route config for route "%s". "%s" expected.',
-                $parameters['_route'],
-                self::CONTROLLER_METHOD_SEPARATOR
-            ));
-        }
-
-        list($class, $method) = explode(
-            self::CONTROLLER_METHOD_SEPARATOR,
-            $parameters['_controller'], 2
-        );
+        $class = $parameters['_controller'];
 
         if (!$this->container->has($class)) {
             throw new \LogicException(sprintf(
-                'Invalid route config for route "%s". Controller "%s" not found.',
+                'Invalid route config for route "%s". Action "%s" not found.',
                 $parameters['_route'],
                 $class
             ));
         }
 
-        $action = [$this->container->get($class), $method];
+        $action = $this->container->get($class);
         $arguments = $this->getArguments($request, $action, $parameters);
 
         return $action(...$arguments);
@@ -86,16 +74,16 @@ class Router implements MiddlewareInterface
      * Get the action arguments
      *
      * @param RequestInterface $request
-     * @param array $action The callable action formatted as array
+     * @param callable $action The callable action formatted as array
      * @param array $parameters The parameters extract by the router
      *
      * @return array
      *
      * @throws \ReflectionException
      */
-    private function getArguments(RequestInterface $request, array $action, array $parameters): array
+    private function getArguments(RequestInterface $request, callable $action, array $parameters): array
     {
-        $reflection = new \ReflectionMethod($action[0], $action[1]);
+        $reflection = new \ReflectionMethod($action, '__invoke');
         foreach ($reflection->getParameters() as $param) {
             if (isset($parameters[$param->getName()])) {
                 $arguments[] = $parameters[$param->getName()];

@@ -33,8 +33,8 @@ services:
         resource: '../src/*'
         exclude: '../src/{Kernel.php,RequestHandler.php}'
 
-    App\Controller\:
-        resource: '../src/Controller'
+    App\Action\:
+        resource: '../src/Action'
         public: true
 
     # add more service definitions when explicit configuration is needed

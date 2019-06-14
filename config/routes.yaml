@@ -1,9 +1,6 @@
 # The application routes
 
 main_index:
-    path: /
-    controller: App\Controller\MainController::index
+    path: '/{name}'
+    controller: App\Action\HelloWorldAction
 
-main_name:
-    path: /name/{name}
-    controller: App\Controller\MainController::name
