@@ -1,4 +1,0 @@
-# Change this for a real cache implementation
-
-services:
-    Symfony\Contracts\Cache\CacheInterface: '@App\Service\VoidCache'

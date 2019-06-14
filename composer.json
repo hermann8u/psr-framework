@@ -12,7 +12,6 @@
         "nyholm/psr7": "^1.1",
         "nyholm/psr7-server": "^0.3.0",
         "psr/http-server-middleware": "^1.0",
-        "symfony/cache-contracts": "^1.1",
         "symfony/config": "^4.2",
         "symfony/dependency-injection": "^4.2",
         "symfony/routing": "^4.2",
