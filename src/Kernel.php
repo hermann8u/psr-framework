@@ -20,16 +20,6 @@ use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 class Kernel
 {
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * @var bool
-     */
-    private $booted;
-
-    /**
      * @var string
      */
     private $env;
@@ -38,6 +28,16 @@ class Kernel
      * @var bool
      */
     private $debug;
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * @var bool
+     */
+    private $booted;
 
     public function __construct(string $env, bool $debug = false)
     {
@@ -79,7 +79,7 @@ class Kernel
         return $this->container;
     }
 
-    private function getProjectDir()
+    private function getProjectDir(): string
     {
         return dirname(__DIR__);
     }
