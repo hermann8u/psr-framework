@@ -2,17 +2,33 @@
 
 namespace App\Controller;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 
-class MainController extends AbstractController
+class MainController
 {
-    public function index(ResponseInterface $response)
+    /**
+     * @var ResponseFactoryInterface
+     */
+    private $responseFactory;
+
+    public function __construct(ResponseFactoryInterface $responseFactory)
     {
-        return $response->withBody($this->render('cool'));
+        $this->responseFactory = $responseFactory;
     }
 
-    public function name(ResponseInterface $response, string $name)
+    public function index()
     {
-        return $response->withBody($this->render($name));
+        return $this
+            ->responseFactory
+            ->createResponse()
+            ->withBody($this->render('cool'));
+    }
+
+    public function name(string $name)
+    {
+        return $this
+            ->responseFactory
+            ->createResponse()
+            ->withBody($this->render($name));
     }
 }

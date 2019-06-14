@@ -14,6 +14,9 @@ use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
+/**
+ * The kernel of the application
+ */
 class Kernel
 {
     /**

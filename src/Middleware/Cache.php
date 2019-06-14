@@ -13,8 +13,6 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * Cache request to improve performance.
- *
- * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class Cache implements MiddlewareInterface
 {

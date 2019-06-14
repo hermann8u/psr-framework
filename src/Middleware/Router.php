@@ -14,6 +14,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 
+/**
+ * The router try to find an action to execute based on the Request, execute it and return its Response.
+ */
 class Router implements MiddlewareInterface
 {
     const CONTROLLER_METHOD_SEPARATOR = '::';
@@ -33,8 +36,11 @@ class Router implements MiddlewareInterface
      */
     private $responseFactory;
 
-    public function __construct(ContainerInterface $container, UrlMatcherInterface $matcher, ResponseFactoryInterface $responseFactory)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        UrlMatcherInterface $matcher,
+        ResponseFactoryInterface $responseFactory
+    ) {
         $this->container = $container;
         $this->matcher = $matcher;
         $this->responseFactory = $responseFactory;
@@ -50,23 +56,46 @@ class Router implements MiddlewareInterface
 
         // We expect $parameters['_controller'] to contain a string on format "ControllerClass::action"
         if (!strpos($parameters['_controller'], self::CONTROLLER_METHOD_SEPARATOR)) {
-            throw new \LogicException(sprintf('Invalid route config for route "%s". "%s" expected.', $parameters['_route'], self::CONTROLLER_METHOD_SEPARATOR));
+            throw new \LogicException(sprintf(
+                'Invalid route config for route "%s". "%s" expected.',
+                $parameters['_route'],
+                self::CONTROLLER_METHOD_SEPARATOR
+            ));
         }
 
-        list($class, $method) = explode(self::CONTROLLER_METHOD_SEPARATOR, $parameters['_controller'], 2);
+        list($class, $method) = explode(
+            self::CONTROLLER_METHOD_SEPARATOR,
+            $parameters['_controller'], 2
+        );
+
         if (!$this->container->has($class)) {
-            throw new \LogicException(sprintf('Invalid route config for route "%s". Controller "%s" not found.', $parameters['_route'], $class));
+            throw new \LogicException(sprintf(
+                'Invalid route config for route "%s". Controller "%s" not found.',
+                $parameters['_route'],
+                $class
+            ));
         }
 
-        $controller = [$this->container->get($class), $method];
-        $arguments = $this->getArguments($request, $controller, $parameters);
+        $action = [$this->container->get($class), $method];
+        $arguments = $this->getArguments($request, $action, $parameters);
 
-        return $controller(...$arguments);
+        return $action(...$arguments);
     }
 
-    private function getArguments(RequestInterface $request, array $controller, array $parameters)
+    /**
+     * Get the action arguments
+     *
+     * @param RequestInterface $request
+     * @param array $action The callable action formatted as array
+     * @param array $parameters The parameters extract by the router
+     *
+     * @return array
+     *
+     * @throws \ReflectionException
+     */
+    private function getArguments(RequestInterface $request, array $action, array $parameters): array
     {
-        $reflection = new \ReflectionMethod($controller[0], $controller[1]);
+        $reflection = new \ReflectionMethod($action[0], $action[1]);
         foreach ($reflection->getParameters() as $param) {
             if (isset($parameters[$param->getName()])) {
                 $arguments[] = $parameters[$param->getName()];
@@ -76,10 +105,6 @@ class Router implements MiddlewareInterface
             if ($type = $param->getType()) {
                 if (RequestInterface::class === $type->getName()) {
                     $arguments[] = $request;
-                }
-
-                if (ResponseInterface::class === $type->getName()) {
-                    $arguments[] = $this->responseFactory->createResponse();
                 }
             }
         }

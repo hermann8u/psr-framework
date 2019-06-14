@@ -9,6 +9,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Handles a server request and produces a response.
+ *
+ * An HTTP request handler process an HTTP request in order to produce an
+ * HTTP response.
+ */
 class RequestHandler implements RequestHandlerInterface
 {
     /**

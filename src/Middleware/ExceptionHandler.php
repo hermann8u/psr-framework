@@ -10,6 +10,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * This middleware should be the first of the stack.
+ *
+ * @see https://www.php-fig.org/psr/psr-15/#14-handling-exceptions
+ */
 class ExceptionHandler implements MiddlewareInterface
 {
     /**
