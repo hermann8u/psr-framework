@@ -65,29 +65,7 @@ class Kernel
         $containerDumpFile = $this->getProjectDir().'/var/cache/'.$this->env.'/container.php';
 
         if ($this->debug || !file_exists($containerDumpFile)) {
-            $container = new ContainerBuilder();
-            $container->setParameter('app.project_dir', $this->getProjectDir());
-            $container->setParameter('app.cache_dir', $this->getProjectDir().'/var/cache/'.$this->env);
-            $container->setParameter('app.environment', $this->env);
-            $container->setParameter('app.debug', $this->debug);
-            $container->registerForAutoconfiguration(MiddlewareInterface::class)
-                ->addTag('app.middleware');
-            $fileLocator = new FileLocator($this->getProjectDir().'/config');
-            $loader = new YamlFileLoader($container, $fileLocator);
-
-            try {
-                $loader->load('services.yaml');
-                $loader->load('services_'.$this->env.'.yaml');
-            } catch (FileLocatorFileNotFoundException $e) {
-            }
-
-            $container->compile();
-            //dump the container
-            @mkdir(dirname($containerDumpFile), 0777, true);
-            file_put_contents(
-                $containerDumpFile,
-                (new PhpDumper($container))->dump(['class' => 'CachedContainer'])
-            );
+            $this->buildContainer($containerDumpFile);
         }
 
         require_once $containerDumpFile;
@@ -104,5 +82,35 @@ class Kernel
     private function getProjectDir()
     {
         return dirname(__DIR__);
+    }
+
+    private function buildContainer(string $containerDumpFile)
+    {
+        $container = new ContainerBuilder();
+
+        $container->setParameter('app.project_dir', $this->getProjectDir());
+        $container->setParameter('app.cache_dir', $this->getProjectDir().'/var/cache/'.$this->env);
+        $container->setParameter('app.environment', $this->env);
+        $container->setParameter('app.debug', $this->debug);
+
+        $container->registerForAutoconfiguration(MiddlewareInterface::class)->addTag('app.middleware');
+
+        $fileLocator = new FileLocator($this->getProjectDir().'/config');
+        $loader = new YamlFileLoader($container, $fileLocator);
+
+        try {
+            $loader->load('services.yaml');
+            $loader->load('services_'.$this->env.'.yaml');
+        } catch (FileLocatorFileNotFoundException $e) {
+        }
+
+        $container->compile();
+
+        //dump the container
+        @mkdir(dirname($containerDumpFile), 0777, true);
+        file_put_contents(
+            $containerDumpFile,
+            (new PhpDumper($container))->dump(['class' => 'CachedContainer'])
+        );
     }
 }
