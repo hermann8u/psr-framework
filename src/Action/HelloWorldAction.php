@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Controller;
+declare(strict_types=1);
+
+namespace App\Action;
 
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-class MainController
+final class HelloWorldAction
 {
     /**
      * @var ResponseFactoryInterface
@@ -22,19 +24,11 @@ class MainController
         $this->streamFactory = $streamFactory;
     }
 
-    public function index()
+    public function __invoke(string $name = null)
     {
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->streamFactory->createStream('Hello world'));
-    }
-
-    public function name(string $name)
-    {
-        return $this
-            ->responseFactory
-            ->createResponse()
-            ->withBody($this->streamFactory->createStream(sprintf("Hello %s", $name)));
+            ->withBody($this->streamFactory->createStream(sprintf("Hello %s", $name ?: 'world')));
     }
 }
