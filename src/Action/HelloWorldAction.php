@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Action;
 
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-class HelloWorldAction
+final class HelloWorldAction
 {
     /**
      * @var ResponseFactoryInterface

@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 /**
  * The router try to find an action to execute based on the Request, execute it and return its Response.
  */
-class Router implements MiddlewareInterface
+final class Router implements MiddlewareInterface
 {
     const CONTROLLER_METHOD_SEPARATOR = '::';
 

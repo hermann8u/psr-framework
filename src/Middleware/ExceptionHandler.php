@@ -15,7 +15,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  *
  * @see https://www.php-fig.org/psr/psr-15/#14-handling-exceptions
  */
-class ExceptionHandler implements MiddlewareInterface
+final class ExceptionHandler implements MiddlewareInterface
 {
     /**
      * @var ResponseFactoryInterface

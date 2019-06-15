@@ -17,7 +17,7 @@ use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 /**
  * The kernel of the application
  */
-class Kernel
+final class Kernel
 {
     /**
      * @var string

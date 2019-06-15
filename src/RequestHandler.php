@@ -15,7 +15,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  * An HTTP request handler process an HTTP request in order to produce an
  * HTTP response.
  */
-class RequestHandler implements RequestHandlerInterface
+final class RequestHandler implements RequestHandlerInterface
 {
     /**
      * @var MiddlewareInterface[]
