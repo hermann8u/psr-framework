@@ -3,4 +3,5 @@
 main_index:
     path: '/{name}'
     controller: App\Action\HelloWorldAction
-
+    defaults:
+        name: null
