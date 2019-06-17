@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Exception\Middleware\NoResponseException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -12,8 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Handles a server request and produces a response.
  *
- * An HTTP request handler process an HTTP request in order to produce an
- * HTTP response.
+ * An HTTP request handler process an HTTP request in order to produce an HTTP response.
  */
 final class RequestHandler implements RequestHandlerInterface
 {
@@ -32,7 +32,7 @@ final class RequestHandler implements RequestHandlerInterface
         $middleware = array_shift($this->queue);
 
         if (null === $middleware) {
-            throw new \LogicException('The last middleware did not return a response.');
+            throw new NoResponseException();
         }
 
         return $middleware->process($request, $this);
