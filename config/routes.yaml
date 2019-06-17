@@ -3,5 +3,6 @@
 main_index:
     path: '/{name}'
     controller: App\Action\HelloWorldAction
+    methods: ['GET']
     defaults:
         name: null

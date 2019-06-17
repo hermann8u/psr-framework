@@ -6,9 +6,9 @@ This micro framework aims to give a little structure in order to use PSR-7, PSR-
 
 - ADR Responder : [Github](https://github.com/ro0NL/symfony-http-responder), [Medium](https://medium.com/@ro0NL/hey-responder-please-respond-to-me-with-a-symfony-response-f506b14cb5ee)
 - Twig
-- Symfony console
 - Json
-- Error handling
+- Error handling : Use the responder to handle exception and routing exception with the right HTTP code.
+- Symfony console
 
 ## Source of inspirations
 

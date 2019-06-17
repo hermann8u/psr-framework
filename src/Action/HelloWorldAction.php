@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Action;
 
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
 final class HelloWorldAction
@@ -24,7 +25,7 @@ final class HelloWorldAction
         $this->streamFactory = $streamFactory;
     }
 
-    public function __invoke(string $name = null)
+    public function __invoke(?string $name): ResponseInterface
     {
         return $this
             ->responseFactory
