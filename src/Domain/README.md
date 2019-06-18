@@ -1,3 +1,3 @@
 # Domain folder of ADR
 
-In this file, you should put your own domain logic.
+In this folder, you should put your own domain logic.
