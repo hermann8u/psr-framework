@@ -85,8 +85,10 @@ final class ActionHandler implements MiddlewareInterface
                 continue;
             }
 
-            if (ServerRequestInterface::class === $actionArgument->getType()->getName()) {
-                $arguments[] = $request;
+            if ($type = $actionArgument->getType()) {
+                if (ServerRequestInterface::class === $type->getName()) {
+                    $arguments[] = $request;
+                }
             }
         }
 
