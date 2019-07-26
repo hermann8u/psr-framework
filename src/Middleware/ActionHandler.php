@@ -39,11 +39,11 @@ final class ActionHandler implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $action = $request->getAttribute('_action');
-        if (!$this->container->has($action)) {
+        $action = $request->getAttribute('action');
+        if (!$action || !$this->container->has($action)) {
             throw new ActionNotFoundException(
-                $action ?? 'NULL',
-                $request->getAttribute('_route') ?? 'NULL'
+                $action,
+                $request->getAttribute('route')
             );
         }
 
@@ -76,7 +76,7 @@ final class ActionHandler implements MiddlewareInterface
      */
     private function extractActionArgumentsFromRequest(\Closure $action, ServerRequestInterface $request): array
     {
-        $parameters = $request->getAttribute('_route_parameters') ?? [];
+        $parameters = $request->getAttribute('route_parameters') ?? [];
 
         $reflection = new \ReflectionFunction($action);
         foreach ($reflection->getParameters() as $actionArgument) {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
+use App\Responder\ResponderInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,19 +19,13 @@ use Psr\Http\Server\RequestHandlerInterface;
 final class ExceptionHandler implements MiddlewareInterface
 {
     /**
-     * @var ResponseFactoryInterface
+     * @var ResponderInterface
      */
-    private $responseFactory;
+    private $responder;
 
-    /**
-     * @var string
-     */
-    private $environment;
-
-    public function __construct(ResponseFactoryInterface $responseFactory, string $environment)
+    public function __construct(ResponderInterface $responder)
     {
-        $this->environment = $environment;
-        $this->responseFactory = $responseFactory;
+        $this->responder = $responder;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -38,11 +33,7 @@ final class ExceptionHandler implements MiddlewareInterface
         try {
             $response = $handler->handle($request);
         } catch (\Throwable $exception) {
-            if ('prod' !== $this->environment) {
-                throw $exception;
-            }
-
-            $response = $this->responseFactory->createResponse(500);
+            $response = $this->responder->respond($request->withAttribute('exception', $exception));
         }
 
         return $response;

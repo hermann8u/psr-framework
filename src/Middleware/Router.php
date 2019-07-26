@@ -49,8 +49,8 @@ final class Router implements MiddlewareInterface
         unset($parameters['_controller']);
 
         return $handler->handle($request
-            ->withAttribute('_route', $route)
-            ->withAttribute('_route_parameters', $parameters)
-            ->withAttribute('_action', $action));
+            ->withAttribute('route', $route)
+            ->withAttribute('route_parameters', $parameters)
+            ->withAttribute('action', $action));
     }
 }

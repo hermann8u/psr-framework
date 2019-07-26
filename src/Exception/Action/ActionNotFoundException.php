@@ -6,7 +6,6 @@ namespace App\Exception\Action;
 
 use App\Exception\ExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Throwable;
 
 class ActionNotFoundException extends \InvalidArgumentException implements ExceptionInterface, NotFoundExceptionInterface
 {
@@ -20,9 +19,13 @@ class ActionNotFoundException extends \InvalidArgumentException implements Excep
      */
     private $route;
 
-    public function __construct(string $action, string $route, $code = 0, Throwable $previous = null)
+    public function __construct(?string $action, ?string $route, $code = 0, \Throwable $previous = null)
     {
-        $message = sprintf('Action "%s" not found for route "%s"', $action, $route);
+        $message = sprintf(
+            'Action "%s" not found for route "%s"',
+            $action ?: 'null',
+            $route ?: 'null'
+        );
 
         parent::__construct($message, $code, $previous);
 

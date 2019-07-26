@@ -1,0 +1,4 @@
+# Indicate which ResponderInterface to load with autowiring
+
+services:
+    App\Responder\ResponderInterface: '@App\Responder\Responder'

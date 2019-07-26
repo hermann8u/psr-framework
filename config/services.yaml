@@ -15,6 +15,12 @@ services:
         bind:
             string $environment: '%app.environment%'
 
+    _instanceof:
+        App\Responder\ResponderInterface:
+            tags: ['app.responder']
+
+    App\Responder\ResponderInterface: '@App\Responder\Responder'
+
     # The request handler goal is to execute the middleware stack
     # Its arguments have to be the middleware stack
     # !! Warning !! Order matters
