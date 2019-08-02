@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exception;
+namespace PsrFramework\Exception;
 
 interface ExceptionInterface extends \Throwable
 {

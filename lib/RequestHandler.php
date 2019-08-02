@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace PsrFramework;
 
-use App\Exception\Middleware\NoResponseException;
+use PsrFramework\Exception\Middleware\NoResponseException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

@@ -18,7 +18,7 @@ services:
     # The request handler goal is to execute the middleware stack
     # Its arguments have to be the middleware stack
     # !! Warning !! Order matters
-    App\RequestHandler:
+    PsrFramework\RequestHandler:
         public: true
         arguments:
             - '@App\Middleware\ExceptionHandler'

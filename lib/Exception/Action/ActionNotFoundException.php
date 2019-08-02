@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Action;
+namespace PsrFramework\Exception\Action;
 
-use App\Exception\ExceptionInterface;
+use PsrFramework\Exception\ExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Middleware;
+namespace PsrFramework\Exception\Middleware;
 
-use App\Exception\ExceptionInterface;
+use PsrFramework\Exception\ExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class NoResponseException extends \LogicException implements ExceptionInterface

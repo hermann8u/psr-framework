@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
-use App\Exception\Action\ActionNotFoundException;
-use App\Exception\Action\InvalidActionReturnTypeException;
-use App\Exception\Action\InvalidActionTypeException;
+use PsrFramework\Exception\Action\ActionNotFoundException;
+use PsrFramework\Exception\Action\InvalidActionReturnTypeException;
+use PsrFramework\Exception\Action\InvalidActionTypeException;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
