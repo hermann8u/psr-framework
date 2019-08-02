@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exception\Action;
 
+use App\Action\ActionInterface;
 use App\Exception\ExceptionInterface;
 
 class InvalidActionTypeException extends InvalidActionException implements ExceptionInterface
@@ -12,7 +13,7 @@ class InvalidActionTypeException extends InvalidActionException implements Excep
     {
         parent::__construct(
             $action,
-            'It should be a callable and implements the method "__invoke()"',
+            'The action must implements the '.ActionInterface::class.' interface.',
             $code,
             $previous
         );

@@ -1,6 +1,6 @@
 # The application routes
 
-main_index:
+hello_world:
     path: '/{name}'
     controller: App\Action\HelloWorldAction
     methods: ['GET']

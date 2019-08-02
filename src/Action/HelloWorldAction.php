@@ -6,14 +6,16 @@ namespace App\Action;
 
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-final class HelloWorldAction
+final class HelloWorldAction implements ActionInterface
 {
     /**
      * @var ResponseFactoryInterface
      */
     private $responseFactory;
+
     /**
      * @var StreamFactoryInterface
      */
@@ -25,11 +27,13 @@ final class HelloWorldAction
         $this->streamFactory = $streamFactory;
     }
 
-    public function __invoke(?string $name): ResponseInterface
+    public function process(ServerRequestInterface $request, array $arguments): ResponseInterface
     {
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this->streamFactory->createStream(sprintf("Hello %s", $name ?: 'world')));
+            ->withBody($this
+                ->streamFactory
+                ->createStream(sprintf("Hello %s", $arguments['name'] ?: 'world')));
     }
 }
