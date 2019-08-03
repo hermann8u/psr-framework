@@ -50,6 +50,6 @@ final class ActionHandler implements MiddlewareInterface
             throw new InvalidActionTypeException($action);
         }
 
-        return $action->process($request);
+        return $action->handle($request);
     }
 }
