@@ -44,13 +44,20 @@ final class Router implements MiddlewareInterface
 
         $route = $parameters['_route'];
         $action = $parameters['_controller'] ?? null;
-        $routeArguments = array_filter($parameters, function (string $key) {
-            return '_' !== $key[0];
-        }, ARRAY_FILTER_USE_KEY);
+        $routeArguments = array_filter(
+            $parameters,
+            [$this, 'isKeyMatchingForRouteArgument'],
+            ARRAY_FILTER_USE_KEY
+        );
 
         return $handler->handle($request
             ->withAttribute('route', $route)
             ->withAttribute('route_arguments', $routeArguments)
             ->withAttribute('action', $action));
+    }
+
+    private function isKeyMatchingForRouteArgument(string $key): bool
+    {
+        return '_' !== $key[0];
     }
 }
