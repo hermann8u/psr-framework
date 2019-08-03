@@ -27,8 +27,15 @@ final class HelloWorldAction implements ActionInterface
         $this->streamFactory = $streamFactory;
     }
 
-    public function process(ServerRequestInterface $request, array $arguments): ResponseInterface
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $arguments = $request->getAttribute('route_arguments');
+
         return $this
             ->responseFactory
             ->createResponse()
