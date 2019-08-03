@@ -53,7 +53,8 @@ final class Router implements MiddlewareInterface
         return $handler->handle($request
             ->withAttribute('route', $route)
             ->withAttribute('route_arguments', $routeArguments)
-            ->withAttribute('action', $action));
+            ->withAttribute('action', $action)
+        );
     }
 
     private function isKeyMatchingForRouteArgument(string $key): bool

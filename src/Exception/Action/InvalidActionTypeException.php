@@ -13,7 +13,7 @@ class InvalidActionTypeException extends InvalidActionException implements Excep
     {
         parent::__construct(
             $action,
-            sprintf("The action must implements the %s interface.", ActionInterface::class),
+            sprintf('The action must implements the %s interface.', ActionInterface::class),
             $code,
             $previous
         );

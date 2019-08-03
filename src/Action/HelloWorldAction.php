@@ -34,6 +34,6 @@ final class HelloWorldAction implements ActionInterface
             ->createResponse()
             ->withBody($this
                 ->streamFactory
-                ->createStream(sprintf("Hello %s", $arguments['name'] ?: 'world')));
+                ->createStream(sprintf('Hello %s', $arguments['name'] ?? 'world')));
     }
 }
