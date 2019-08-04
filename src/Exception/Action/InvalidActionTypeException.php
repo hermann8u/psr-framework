@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Exception\Action;
 
 use App\Exception\ExceptionInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class InvalidActionTypeException extends InvalidActionException implements ExceptionInterface
 {
@@ -12,7 +13,7 @@ class InvalidActionTypeException extends InvalidActionException implements Excep
     {
         parent::__construct(
             $action,
-            'It should be a callable and implements the method "__invoke()"',
+            sprintf('The action must implements the %s interface.', RequestHandlerInterface::class),
             $code,
             $previous
         );
