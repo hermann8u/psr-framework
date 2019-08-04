@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
-use App\Action\ActionInterface;
 use App\Exception\Action\ActionNotFoundException;
 use App\Exception\Action\InvalidActionTypeException;
 use Psr\Container\ContainerInterface;
@@ -46,7 +45,7 @@ final class ActionHandler implements MiddlewareInterface
         }
 
         $action = $this->container->get($action);
-        if (!$action instanceof ActionInterface) {
+        if (!$action instanceof RequestHandlerInterface) {
             throw new InvalidActionTypeException($action);
         }
 

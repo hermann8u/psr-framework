@@ -8,8 +8,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-final class HelloWorldAction implements ActionInterface
+final class HelloWorldAction implements RequestHandlerInterface
 {
     /**
      * @var ResponseFactoryInterface
