@@ -18,9 +18,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class ActionHandler implements MiddlewareInterface
 {
-    /**
-     * @var ContainerInterface
-     */
+    /** @var ContainerInterface */
     private $container;
 
     public function __construct(ContainerInterface $container)

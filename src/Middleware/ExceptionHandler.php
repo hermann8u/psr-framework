@@ -17,14 +17,10 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class ExceptionHandler implements MiddlewareInterface
 {
-    /**
-     * @var ResponseFactoryInterface
-     */
+    /** @var ResponseFactoryInterface */
     private $responseFactory;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $environment;
 
     public function __construct(ResponseFactoryInterface $responseFactory, string $environment)

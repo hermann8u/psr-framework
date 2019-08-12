@@ -19,24 +19,16 @@ use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
  */
 final class Kernel
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $env;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $debug;
 
-    /**
-     * @var ContainerInterface
-     */
+    /** @var ContainerInterface */
     private $container;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $booted;
 
     public function __construct(string $env, bool $debug = false)
