@@ -14,10 +14,10 @@
         "psr/http-server-middleware": "^1.0",
         "symfony/config": "^4.2",
         "symfony/dependency-injection": "^4.2",
+        "symfony/dotenv": "^4.3",
         "symfony/routing": "^4.2",
         "symfony/yaml": "^4.2",
-        "zendframework/zend-httphandlerrunner": "^1.1",
-        "vlucas/phpdotenv": "^3.6"
+        "zendframework/zend-httphandlerrunner": "^1.1"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2"
