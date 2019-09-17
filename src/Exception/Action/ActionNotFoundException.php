@@ -10,14 +10,10 @@ use Throwable;
 
 class ActionNotFoundException extends \InvalidArgumentException implements ExceptionInterface, NotFoundExceptionInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $action;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $route;
 
     public function __construct(string $action, string $route, $code = 0, Throwable $previous = null)

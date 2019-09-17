@@ -18,9 +18,7 @@ use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
  */
 final class Router implements MiddlewareInterface
 {
-    /**
-     * @var UrlMatcherInterface
-     */
+    /** @var UrlMatcherInterface */
     private $matcher;
 
     public function __construct(UrlMatcherInterface $matcher)
