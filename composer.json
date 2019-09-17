@@ -16,10 +16,10 @@
         "symfony/dependency-injection": "^4.2",
         "symfony/routing": "^4.2",
         "symfony/yaml": "^4.2",
-        "zendframework/zend-httphandlerrunner": "^1.1"
+        "zendframework/zend-httphandlerrunner": "^1.1",
+        "vlucas/phpdotenv": "^3.6"
     },
     "require-dev": {
-        "symfony/dotenv": "^4.2",
         "symfony/var-dumper": "^4.2"
     },
     "autoload": {
