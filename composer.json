@@ -14,17 +14,23 @@
         "psr/http-server-middleware": "^1.0",
         "symfony/config": "^4.2",
         "symfony/dependency-injection": "^4.2",
+        "symfony/dotenv": "^4.3",
         "symfony/routing": "^4.2",
         "symfony/yaml": "^4.2",
         "zendframework/zend-httphandlerrunner": "^1.1"
     },
     "require-dev": {
-        "symfony/dotenv": "^4.2",
         "symfony/var-dumper": "^4.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
     }
 }
