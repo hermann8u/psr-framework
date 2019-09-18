@@ -56,11 +56,11 @@ final class Kernel
      */
     private function boot(): void
     {
-        $containerDumpFile = $this->getCacheDir().'/container.php';
-
         if ($this->debug) {
             $this->initWhoops();
         }
+
+        $containerDumpFile = $this->getCacheDir().'/container.php';
 
         if ($this->debug || !file_exists($containerDumpFile)) {
             $this->buildContainer($containerDumpFile);
