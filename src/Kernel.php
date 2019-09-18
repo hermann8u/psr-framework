@@ -62,6 +62,10 @@ final class Kernel
             $this->buildContainer($containerDumpFile);
         }
 
+        if ($this->debug) {
+            $this->initWhoops();
+        }
+
         require_once $containerDumpFile;
 
         $this->container = new \CachedContainer();
@@ -96,12 +100,27 @@ final class Kernel
 
         $container->compile();
 
-        //dump the container
+        // dump the container
         @mkdir(dirname($containerDumpFile), 0777, true);
         file_put_contents(
             $containerDumpFile,
             (new PhpDumper($container))->dump(['class' => 'CachedContainer'])
         );
+    }
+
+    /**
+     * Init Whoops, an error handler for the debug mode
+     */
+    private function initWhoops(): void
+    {
+        if (!class_exists('\\Whoops\\Run')) {
+            return;
+        }
+
+        $whoops = new \Whoops\Run();
+        $whoops->appendHandler(new \Whoops\Handler\PrettyPageHandler());
+
+        $whoops->register();
     }
 
     private function getProjectDir(): string

@@ -37,8 +37,8 @@ final class ActionHandler implements MiddlewareInterface
         $action = $request->getAttribute('action');
         if (!$this->container->has($action)) {
             throw new ActionNotFoundException(
-                $action ?? 'NULL',
-                $request->getAttribute('route') ?? 'NULL'
+                $action,
+                $request->getAttribute('route')
             );
         }
 
