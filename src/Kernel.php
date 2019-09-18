@@ -58,12 +58,12 @@ final class Kernel
     {
         $containerDumpFile = $this->getCacheDir().'/container.php';
 
-        if ($this->debug || !file_exists($containerDumpFile)) {
-            $this->buildContainer($containerDumpFile);
-        }
-
         if ($this->debug) {
             $this->initWhoops();
+        }
+
+        if ($this->debug || !file_exists($containerDumpFile)) {
+            $this->buildContainer($containerDumpFile);
         }
 
         require_once $containerDumpFile;
