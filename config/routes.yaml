@@ -2,7 +2,7 @@
 
 hello_world:
     path: '/{name}'
-    controller: App\Action\HelloWorldActiong
+    controller: App\Action\HelloWorldAction
     methods: ['GET']
     defaults:
         name: null
