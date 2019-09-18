@@ -16,9 +16,13 @@ class ActionNotFoundException extends \InvalidArgumentException implements Excep
     /** @var string */
     private $route;
 
-    public function __construct(string $action, string $route, $code = 0, Throwable $previous = null)
+    public function __construct(?string $action, ?string $route, $code = 0, Throwable $previous = null)
     {
-        $message = sprintf('Action "%s" not found for route "%s"', $action, $route);
+        $message = sprintf(
+            'Action "%s" not found for route "%s"',
+            $action ?? 'NULL',
+            $route ?? 'NULL'
+        );
 
         parent::__construct($message, $code, $previous);
 
