@@ -19,11 +19,11 @@ use Psr\Http\Server\RequestHandlerInterface;
 final class ActionHandler implements MiddlewareInterface
 {
     /** @var ContainerInterface */
-    private $container;
+    private $actionLocator;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $actionLocator)
     {
-        $this->container = $container;
+        $this->actionLocator = $actionLocator;
     }
 
     /**
@@ -35,14 +35,14 @@ final class ActionHandler implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $action = $request->getAttribute('action');
-        if (!$this->container->has($action)) {
+        if (!$this->actionLocator->has($action)) {
             throw new ActionNotFoundException(
                 $action,
                 $request->getAttribute('route')
             );
         }
 
-        $action = $this->container->get($action);
+        $action = $this->actionLocator->get($action);
         if (!$action instanceof RequestHandlerInterface) {
             throw new InvalidActionTypeException($action);
         }
