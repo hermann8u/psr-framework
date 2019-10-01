@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
  * The action handler try to execute an action based on the request and return the response from it.
@@ -34,15 +35,14 @@ final class ActionHandler implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $action = $request->getAttribute('action');
-        if (!$this->actionLocator->has($action)) {
-            throw new ActionNotFoundException(
-                $action,
-                $request->getAttribute('route')
-            );
+        $actionClassName = $request->getAttribute('action');
+
+        try {
+            $action = $this->actionLocator->get($actionClassName);
+        } catch (ServiceNotFoundException $serviceNotFoundException) {
+            throw new ActionNotFoundException($actionClassName, $request->getAttribute('route'));
         }
 
-        $action = $this->actionLocator->get($action);
         if (!$action instanceof RequestHandlerInterface) {
             throw new InvalidActionTypeException($action);
         }
