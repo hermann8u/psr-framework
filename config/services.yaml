@@ -1,4 +1,4 @@
-# This file is the entry point to configure the application services.
+# This file is the entry point to configure the application's services.
 
 # Files in the packages/ subdirectory configure your dependencies.
 imports:
@@ -22,10 +22,9 @@ services:
         resource: '../src/*'
         exclude: '../src/{Kernel.php}'
 
-    # The actions are registered separately because they need to be public and in order to add them the "app.action" tag
+    # The actions are registered separately in order to add them the "app.action" tag
     App\Action\:
         resource: '../src/Action'
-        public: true
         tags: ['app.action']
 
     # The request handler goal is to execute the middleware stack given as arguments
@@ -37,6 +36,11 @@ services:
             - '@App\Middleware\ExceptionHandler'
             - '@App\Middleware\Router'
             - '@App\Middleware\ActionHandler'
+
+    # Inject a smaller container which contains only the actions
+    App\Middleware\ActionHandler:
+        arguments:
+            $actionLocator: !tagged_locator { tag: 'app.action' }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
