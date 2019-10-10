@@ -40,7 +40,7 @@ services:
     # Inject a smaller container which contains only the actions
     App\Middleware\ActionHandler:
         arguments:
-            $actionLocator: !tagged_locator { tag: 'app.action' }
+            $actionLocator: !tagged_locator 'app.action'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
