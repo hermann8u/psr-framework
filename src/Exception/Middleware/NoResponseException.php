@@ -12,7 +12,7 @@ class NoResponseException extends \LogicException implements ExceptionInterface
     public function __construct($code = 0, \Throwable $previous = null)
     {
         $message = sprintf(
-            'The last middleware should return an object of type "%s"',
+            'The last middleware of the stack must return an object of type "%s"',
             ResponseInterface::class
         );
 
