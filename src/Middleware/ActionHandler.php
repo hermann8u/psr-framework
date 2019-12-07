@@ -6,12 +6,12 @@ namespace App\Middleware;
 
 use App\Exception\Action\ActionNotFoundException;
 use App\Exception\Action\InvalidActionTypeException;
-use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use Symfony\Contracts\Service\ServiceProviderInterface;
 
 /**
  * The action handler try to execute an action based on the request and return the response from it.
@@ -19,10 +19,10 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  */
 final class ActionHandler implements MiddlewareInterface
 {
-    /** @var ContainerInterface */
+    /** @var ServiceProviderInterface */
     private $actionLocator;
 
-    public function __construct(ContainerInterface $actionLocator)
+    public function __construct(ServiceProviderInterface $actionLocator)
     {
         $this->actionLocator = $actionLocator;
     }
@@ -38,9 +38,13 @@ final class ActionHandler implements MiddlewareInterface
         $actionClassName = $request->getAttribute('action');
 
         try {
-            $action = $this->actionLocator->get($actionClassName);
-        } catch (ServiceNotFoundException $serviceNotFoundException) {
-            throw new ActionNotFoundException($actionClassName, $request->getAttribute('route'));
+            $action = $this->actionLocator->get('nimp');
+        } catch (NotFoundExceptionInterface $serviceNotFoundException) {
+            throw new ActionNotFoundException(
+                $actionClassName,
+                $request->getAttribute('route'),
+                array_keys($this->actionLocator->getProvidedServices())
+            );
         }
 
         if (!$action instanceof RequestHandlerInterface) {

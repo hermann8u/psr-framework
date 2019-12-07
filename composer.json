@@ -10,19 +10,19 @@
     "require": {
         "php": "^7.2",
         "nyholm/psr7": "^1.1",
-        "nyholm/psr7-server": "^0.3.0",
+        "nyholm/psr7-server": "^0.4",
         "psr/http-server-middleware": "^1.0",
-        "symfony/config": "^4.3",
-        "symfony/dependency-injection": "^4.3",
-        "symfony/dotenv": "^4.3",
-        "symfony/finder": "^4.3",
-        "symfony/routing": "^4.3",
-        "symfony/yaml": "^4.3",
+        "symfony/config": "^4.4",
+        "symfony/dependency-injection": "^4.4",
+        "symfony/dotenv": "^4.4",
+        "symfony/finder": "^4.4",
+        "symfony/routing": "^4.4",
+        "symfony/yaml": "^4.4",
         "zendframework/zend-httphandlerrunner": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "^2.5",
-        "symfony/var-dumper": "^4.3"
+        "symfony/var-dumper": "^4.4"
     },
     "autoload": {
         "psr-4": {

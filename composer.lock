@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ef3c95581e62a76aa042531a15b32e6",
+    "content-hash": "8142eb6bad1ce6c643f9056a9aa8670f",
     "packages": [
         {
             "name": "nyholm/psr7",
@@ -70,16 +70,16 @@
         },
         {
             "name": "nyholm/psr7-server",
-            "version": "0.3.0",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nyholm/psr7-server.git",
-                "reference": "1b71a848fcb066fb805b7a9ab3f41ff65bffcde8"
+                "reference": "e6a526e9170e6e33a13efc2b61703ca476b7ea68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nyholm/psr7-server/zipball/1b71a848fcb066fb805b7a9ab3f41ff65bffcde8",
-                "reference": "1b71a848fcb066fb805b7a9ab3f41ff65bffcde8",
+                "url": "https://api.github.com/repos/Nyholm/psr7-server/zipball/e6a526e9170e6e33a13efc2b61703ca476b7ea68",
+                "reference": "e6a526e9170e6e33a13efc2b61703ca476b7ea68",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
                 "psr-17",
                 "psr-7"
             ],
-            "time": "2018-09-02T10:41:28+00:00"
+            "time": "2019-11-05T20:36:33+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -429,32 +429,32 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "0acb26407a9e1a64a275142f0ae5e36436342720"
+                "reference": "7aa5817f1b7a8ed377752b90fcc47dfb3c67b40c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/0acb26407a9e1a64a275142f0ae5e36436342720",
-                "reference": "0acb26407a9e1a64a275142f0ae5e36436342720",
+                "url": "https://api.github.com/repos/symfony/config/zipball/7aa5817f1b7a8ed377752b90fcc47dfb3c67b40c",
+                "reference": "7aa5817f1b7a8ed377752b90fcc47dfb3c67b40c",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
-                "symfony/filesystem": "~3.4|~4.0",
+                "symfony/filesystem": "^3.4|^4.0|^5.0",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
                 "symfony/finder": "<3.4"
             },
             "require-dev": {
-                "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/event-dispatcher": "~3.4|~4.0",
-                "symfony/finder": "~3.4|~4.0",
-                "symfony/messenger": "~4.1",
-                "symfony/yaml": "~3.4|~4.0"
+                "symfony/event-dispatcher": "^3.4|^4.0|^5.0",
+                "symfony/finder": "^3.4|^4.0|^5.0",
+                "symfony/messenger": "^4.1|^5.0",
+                "symfony/service-contracts": "^1.1|^2",
+                "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "symfony/yaml": "To use the yaml reference dumper"
@@ -462,7 +462,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -489,29 +489,29 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-19T15:51:53+00:00"
+            "time": "2019-12-01T10:50:45+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "e1e0762a814b957a1092bff75a550db49724d05b"
+                "reference": "ad46a4def1325befab696b49c839dffea3fc92bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/e1e0762a814b957a1092bff75a550db49724d05b",
-                "reference": "e1e0762a814b957a1092bff75a550db49724d05b",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/ad46a4def1325befab696b49c839dffea3fc92bd",
+                "reference": "ad46a4def1325befab696b49c839dffea3fc92bd",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
                 "psr/container": "^1.0",
-                "symfony/service-contracts": "^1.1.6"
+                "symfony/service-contracts": "^1.1.6|^2"
             },
             "conflict": {
-                "symfony/config": "<4.3",
+                "symfony/config": "<4.3|>=5.0",
                 "symfony/finder": "<3.4",
                 "symfony/proxy-manager-bridge": "<3.4",
                 "symfony/yaml": "<3.4"
@@ -522,8 +522,8 @@
             },
             "require-dev": {
                 "symfony/config": "^4.3",
-                "symfony/expression-language": "~3.4|~4.0",
-                "symfony/yaml": "~3.4|~4.0"
+                "symfony/expression-language": "^3.4|^4.0|^5.0",
+                "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "symfony/config": "",
@@ -535,7 +535,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -562,32 +562,32 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-02T12:58:58+00:00"
+            "time": "2019-12-01T10:19:36+00:00"
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "1785b18148a016b8f4e6a612291188d568e1f9cd"
+                "reference": "7abe2c6d7d232cf5a88e79a57479876b35704a01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/1785b18148a016b8f4e6a612291188d568e1f9cd",
-                "reference": "1785b18148a016b8f4e6a612291188d568e1f9cd",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/7abe2c6d7d232cf5a88e79a57479876b35704a01",
+                "reference": "7abe2c6d7d232cf5a88e79a57479876b35704a01",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3"
             },
             "require-dev": {
-                "symfony/process": "~3.4|~4.0"
+                "symfony/process": "^3.4.2|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -619,30 +619,30 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-08-03T21:50:52+00:00"
+            "time": "2019-11-23T14:53:46+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.3.5",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "9abbb7ef96a51f4d7e69627bc6f63307994e4263"
+                "reference": "1d71f670bc5a07b9ccc97dc44f932177a322d4e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/9abbb7ef96a51f4d7e69627bc6f63307994e4263",
-                "reference": "9abbb7ef96a51f4d7e69627bc6f63307994e4263",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1d71f670bc5a07b9ccc97dc44f932177a322d4e6",
+                "reference": "1d71f670bc5a07b9ccc97dc44f932177a322d4e6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -669,20 +669,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-20T14:07:54+00:00"
+            "time": "2019-11-26T23:25:11+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "5e575faa95548d0586f6bedaeabec259714e44d1"
+                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/5e575faa95548d0586f6bedaeabec259714e44d1",
-                "reference": "5e575faa95548d0586f6bedaeabec259714e44d1",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/ce8743441da64c41e2a667b8eb66070444ed911e",
+                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +691,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -718,20 +718,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T11:29:48+00:00"
+            "time": "2019-11-17T21:56:56+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
                 "shasum": ""
             },
             "require": {
@@ -743,7 +743,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -776,20 +776,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/routing",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "3b174ef04fe66696524efad1e5f7a6c663d822ea"
+                "reference": "51f3f20ad29329a0bdf5c0e2f722d3764b065273"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/3b174ef04fe66696524efad1e5f7a6c663d822ea",
-                "reference": "3b174ef04fe66696524efad1e5f7a6c663d822ea",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/51f3f20ad29329a0bdf5c0e2f722d3764b065273",
+                "reference": "51f3f20ad29329a0bdf5c0e2f722d3764b065273",
                 "shasum": ""
             },
             "require": {
@@ -803,11 +803,11 @@
             "require-dev": {
                 "doctrine/annotations": "~1.2",
                 "psr/log": "~1.0",
-                "symfony/config": "~4.2",
-                "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/expression-language": "~3.4|~4.0",
-                "symfony/http-foundation": "~3.4|~4.0",
-                "symfony/yaml": "~3.4|~4.0"
+                "symfony/config": "^4.2|^5.0",
+                "symfony/dependency-injection": "^3.4|^4.0|^5.0",
+                "symfony/expression-language": "^3.4|^4.0|^5.0",
+                "symfony/http-foundation": "^3.4|^4.0|^5.0",
+                "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "doctrine/annotations": "For using the annotation loader",
@@ -819,7 +819,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -852,24 +852,24 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-10-04T20:57:10+00:00"
+            "time": "2019-12-01T08:39:58+00:00"
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v1.1.7",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "ffcde9615dc5bb4825b9f6aed07716f1f57faae0"
+                "reference": "144c5e51266b281231e947b51223ba14acf1a749"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/ffcde9615dc5bb4825b9f6aed07716f1f57faae0",
-                "reference": "ffcde9615dc5bb4825b9f6aed07716f1f57faae0",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/144c5e51266b281231e947b51223ba14acf1a749",
+                "reference": "144c5e51266b281231e947b51223ba14acf1a749",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "psr/container": "^1.0"
             },
             "suggest": {
@@ -878,7 +878,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
@@ -910,20 +910,20 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-09-17T11:12:18+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "41e16350a2a1c7383c4735aa2f9fce74cf3d1178"
+                "reference": "76de473358fe802578a415d5bb43c296cf09d211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/41e16350a2a1c7383c4735aa2f9fce74cf3d1178",
-                "reference": "41e16350a2a1c7383c4735aa2f9fce74cf3d1178",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/76de473358fe802578a415d5bb43c296cf09d211",
+                "reference": "76de473358fe802578a415d5bb43c296cf09d211",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +934,7 @@
                 "symfony/console": "<3.4"
             },
             "require-dev": {
-                "symfony/console": "~3.4|~4.0"
+                "symfony/console": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
@@ -942,7 +942,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -969,7 +969,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-11T15:41:19+00:00"
+            "time": "2019-11-12T14:51:11+00:00"
         },
         {
             "name": "zendframework/zend-httphandlerrunner",
@@ -1091,16 +1091,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1134,20 +1134,20 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2018-11-20T15:27:04+00:00"
+            "time": "2019-11-01T11:05:21+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -1159,7 +1159,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -1193,20 +1193,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "04ce3335667451138df4307d6a9b61565560199e"
+                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/04ce3335667451138df4307d6a9b61565560199e",
-                "reference": "04ce3335667451138df4307d6a9b61565560199e",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/66fea50f6cb37a35eea048d75a7d99a45b586038",
+                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038",
                 "shasum": ""
             },
             "require": {
@@ -1215,7 +1215,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -1248,20 +1248,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "bde8957fc415fdc6964f33916a3755737744ff05"
+                "reference": "0a89a1dbbedd9fb2cfb2336556dec8305273c19a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/bde8957fc415fdc6964f33916a3755737744ff05",
-                "reference": "bde8957fc415fdc6964f33916a3755737744ff05",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0a89a1dbbedd9fb2cfb2336556dec8305273c19a",
+                "reference": "0a89a1dbbedd9fb2cfb2336556dec8305273c19a",
                 "shasum": ""
             },
             "require": {
@@ -1275,9 +1275,9 @@
             },
             "require-dev": {
                 "ext-iconv": "*",
-                "symfony/console": "~3.4|~4.0",
-                "symfony/process": "~3.4|~4.0",
-                "twig/twig": "~1.34|~2.4"
+                "symfony/console": "^3.4|^4.0|^5.0",
+                "symfony/process": "^4.4|^5.0",
+                "twig/twig": "^1.34|^2.4|^3.0"
             },
             "suggest": {
                 "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
@@ -1290,7 +1290,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -1324,7 +1324,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-10-04T19:48:13+00:00"
+            "time": "2019-11-28T13:33:56+00:00"
         }
     ],
     "aliases": [],

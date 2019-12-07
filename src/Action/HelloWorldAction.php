@@ -32,12 +32,13 @@ final class HelloWorldAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $arguments = $request->getAttribute('route_arguments');
+        $stream = $this
+            ->streamFactory
+            ->createStream(sprintf('Hello %s', $arguments['name'] ?? 'world'));
 
         return $this
             ->responseFactory
             ->createResponse()
-            ->withBody($this
-                ->streamFactory
-                ->createStream(sprintf('Hello %s', $arguments['name'] ?? 'world')));
+            ->withBody($stream);
     }
 }

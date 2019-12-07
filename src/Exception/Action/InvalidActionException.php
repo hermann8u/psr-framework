@@ -12,20 +12,20 @@ class InvalidActionException extends \InvalidArgumentException implements Except
     protected $action;
 
     /** @var string */
-    protected $reasons;
+    protected $reasonPhrase;
 
-    public function __construct(object $action, string $reasons = '', $code = 0, \Throwable $previous = null)
+    public function __construct(object $action, string $reasonPhrase = '', $code = 0, \Throwable $previous = null)
     {
         $message = sprintf(
             'The action "%s" is invalid. %s',
             get_class($action),
-            $reasons
+            $reasonPhrase
         );
 
         parent::__construct($message, $code, $previous);
 
         $this->action = $action;
-        $this->reasons = $reasons;
+        $this->reasonPhrase = $reasonPhrase;
     }
 
     public function getAction(): object
@@ -36,8 +36,8 @@ class InvalidActionException extends \InvalidArgumentException implements Except
     /**
      * @return string
      */
-    public function getReasons(): string
+    public function getReasonPhrase(): string
     {
-        return $this->reasons;
+        return $this->reasonPhrase;
     }
 }

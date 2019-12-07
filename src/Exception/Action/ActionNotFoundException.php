@@ -16,7 +16,10 @@ class ActionNotFoundException extends \InvalidArgumentException implements Excep
     /** @var string */
     private $route;
 
-    public function __construct(?string $action, ?string $route, $code = 0, Throwable $previous = null)
+    /** @var string[] */
+    private $availableActions;
+
+    public function __construct(?string $action, ?string $route, array $availableActions = [], $code = 0, Throwable $previous = null)
     {
         $message = sprintf(
             'Action "%s" not found for route "%s"',
@@ -28,21 +31,21 @@ class ActionNotFoundException extends \InvalidArgumentException implements Excep
 
         $this->action = $action;
         $this->route = $route;
+        $this->availableActions = $availableActions;
     }
 
-    /**
-     * @return string
-     */
     public function getAction(): string
     {
         return $this->action;
     }
 
-    /**
-     * @return string
-     */
     public function getRoute(): string
     {
         return $this->route;
+    }
+
+    public function getAvailableActions(): array
+    {
+        return $this->availableActions;
     }
 }
