@@ -38,7 +38,7 @@ final class ActionHandler implements MiddlewareInterface
         $actionClassName = $request->getAttribute('action');
 
         try {
-            $action = $this->actionLocator->get('nimp');
+            $action = $this->actionLocator->get($actionClassName);
         } catch (NotFoundExceptionInterface $serviceNotFoundException) {
             throw new ActionNotFoundException(
                 $actionClassName,
