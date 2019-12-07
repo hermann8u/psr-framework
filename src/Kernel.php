@@ -7,10 +7,17 @@ namespace App;
 use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
-use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
+use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
+use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
+use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
@@ -19,6 +26,8 @@ use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
  */
 final class Kernel
 {
+    const CONFIG_EXTENSIONS = '.{php,xml,yaml,yml}';
+
     /** @var string */
     private $env;
 
@@ -89,14 +98,11 @@ final class Kernel
 
         $container->registerForAutoconfiguration(MiddlewareInterface::class)->addTag('app.middleware');
 
-        $fileLocator = new FileLocator($this->getProjectDir().'/config');
-        $loader = new YamlFileLoader($container, $fileLocator);
-
-        try {
-            $loader->load('services.yaml');
-            $loader->load('services_'.$this->env.'.yaml');
-        } catch (FileLocatorFileNotFoundException $e) {
-        }
+        $loader = $this->getContainerLoader($container);
+        $loader->load('{packages}/*'.self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load('{packages}/'.$this->env.'/**/*'.self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load('{services}'.self::CONFIG_EXTENSIONS, 'glob');
+        $loader->load('{services}_'.$this->env.self::CONFIG_EXTENSIONS, 'glob');
 
         $container->compile();
 
@@ -106,6 +112,21 @@ final class Kernel
             $containerDumpFile,
             (new PhpDumper($container))->dump(['class' => 'CachedContainer'])
         );
+    }
+
+    private function getContainerLoader(ContainerBuilder $container): LoaderInterface
+    {
+        $locator = new FileLocator($this->getConfigDir());
+        $resolver = new LoaderResolver([
+            new XmlFileLoader($container, $locator),
+            new YamlFileLoader($container, $locator),
+            new PhpFileLoader($container, $locator),
+            new GlobFileLoader($container, $locator),
+            new DirectoryLoader($container, $locator),
+            new ClosureLoader($container),
+        ]);
+
+        return new DelegatingLoader($resolver);
     }
 
     /**
@@ -130,6 +151,11 @@ final class Kernel
 
     private function getCacheDir(): string
     {
-        return sprintf("%s/var/cache/%s", $this->getProjectDir(), $this->env);
+        return sprintf('%s/var/cache/%s', $this->getProjectDir(), $this->env);
+    }
+
+    private function getConfigDir(): string
+    {
+        return $this->getProjectDir().'/config';
     }
 }

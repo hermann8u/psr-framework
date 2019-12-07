@@ -1,15 +1,11 @@
-# This file is the entry point to configure the application services.
-
-# Files in the packages/ subdirectory configure your dependencies.
-imports:
-    - { resource: packages/* }
+# This file is the entry point to configure the application's services.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
 
 services:
-    # default configuration for services in *this* file
+    # Default configuration for services in *this* file
     _defaults:
         autowire: true
         public: false
@@ -22,10 +18,9 @@ services:
         resource: '../src/*'
         exclude: '../src/{Kernel.php}'
 
-    # The actions are registered separately because they need to be public and in order to add them the "app.action" tag
+    # The actions are registered separately in order to add them the "app.action" tag
     App\Action\:
         resource: '../src/Action'
-        public: true
         tags: ['app.action']
 
     # The request handler goal is to execute the middleware stack given as arguments
@@ -38,5 +33,10 @@ services:
             - '@App\Middleware\Router'
             - '@App\Middleware\ActionHandler'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Inject a smaller container which contains only the actions
+    App\Middleware\ActionHandler:
+        arguments:
+            $actionLocator: !tagged_locator app.action
+
+    # Add more service definitions when explicit configuration is needed
+    # Please note that last definitions always *replace* previous ones

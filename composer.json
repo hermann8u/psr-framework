@@ -15,6 +15,7 @@
         "symfony/config": "^4.3",
         "symfony/dependency-injection": "^4.3",
         "symfony/dotenv": "^4.3",
+        "symfony/finder": "^4.3",
         "symfony/routing": "^4.3",
         "symfony/yaml": "^4.3",
         "zendframework/zend-httphandlerrunner": "^1.1"
