@@ -6,11 +6,11 @@ namespace App\Middleware;
 
 use App\Exception\Action\ActionNotFoundException;
 use App\Exception\Action\InvalidActionTypeException;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Contracts\Service\ServiceProviderInterface;
 
 /**
@@ -39,9 +39,9 @@ final class ActionHandler implements MiddlewareInterface
 
         try {
             $action = $this->actionLocator->get($actionClassName);
-        } catch (NotFoundExceptionInterface $serviceNotFoundException) {
+        } catch (ServiceNotFoundException $serviceNotFoundException) {
             throw new ActionNotFoundException(
-                $actionClassName,
+                $serviceNotFoundException->getId(),
                 $request->getAttribute('route'),
                 array_keys($this->actionLocator->getProvidedServices())
             );
