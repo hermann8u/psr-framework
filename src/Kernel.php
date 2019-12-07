@@ -65,10 +65,6 @@ final class Kernel
      */
     private function boot(): void
     {
-        if ($this->debug) {
-            $this->initWhoops();
-        }
-
         $containerDumpFile = $this->getCacheDir().'/container.php';
 
         if ($this->debug || !file_exists($containerDumpFile)) {
@@ -127,21 +123,6 @@ final class Kernel
         ]);
 
         return new DelegatingLoader($resolver);
-    }
-
-    /**
-     * Init Whoops, an error handler for the debug mode
-     */
-    private function initWhoops(): void
-    {
-        if (!class_exists('\\Whoops\\Run')) {
-            return;
-        }
-
-        $whoops = new \Whoops\Run();
-        $whoops->appendHandler(new \Whoops\Handler\PrettyPageHandler());
-
-        $whoops->register();
     }
 
     private function getProjectDir(): string
